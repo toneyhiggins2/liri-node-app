@@ -45,41 +45,47 @@ var Search = function() {
         ].join("\n\n");
   
         // Append showData and the divider to log.txt, print showData to the console
-        // fs.appendFile("log.txt", showData + divider, function(err) {
-        //   if (err) throw err;
-        //   console.log(showData);
-        // });
+        fs.appendFile("log.txt", showData + divider, function(err) {
+          if (err) throw err;
+          console.log(showData);
+        });
 
         console.log(showData);
       });
     };
   
-    this.spotifySong = function(actor) {
-      var URL = "http://api.tvmaze.com/search/people?q=" + actor;
+    this.spotifySong = function(song) {
+      //var URL = "http://api.tvmaze.com/search/people?q=" + song;
   
       // Add code to search the TVMaze API for the given actor
       // The API will return an array containing multiple actors, just grab the first result
       // Append the actor's name, birthday, gender, country, and URL to the `log.txt` file
       // Print this information to the console
-      axios.get(URL).then(function(response) {
-        // Place the response.data into a variable, jsonData.
-        var jsonData = response.data[0];
+      spotify
+  .search({ type: 'track', query: 'All the Small Things' })
+  .then(function(response) {
+    console.log(response);
+
+    var jsonData = response.data;
   
         // showData ends up being the string containing the show data we will print to the console
-        var actorData = [
-          "Name: " + jsonData.person.name,
-          "Birthday: " + jsonData.person.birthday,
-          "Gender: " + jsonData.person.gender,
-          "Country: " + jsonData.person.country.name,
-          "TV Maze URL: " + jsonData.person.url
+        var songData = [
+          "Artist: " + jsonData.person.name,
+          "Song Name: " + jsonData.person.birthday,
+          "Song URL: " + jsonData.person.gender,
+          "Album: " + jsonData.person.country.name
         ].join("\n\n");
   
         // Append showData and the divider to log.txt, print showData to the console
-        fs.appendFile("log.txt", actorData + divider, function(err) {
+        fs.appendFile("log.txt", songData + divider, function(err) {
           if (err) throw err;
-          console.log(actorData);
+          console.log(songData);
         });
-      });
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
     };
   };
 
