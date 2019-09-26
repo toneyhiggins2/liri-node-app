@@ -12,7 +12,7 @@ var selectAction = process.argv[2];
 var userSearch = process.argv.slice(3).join(" ");
 
 if (selectAction === "concert-this") {
-
+Search.concertThis(userSearch);
 }
 else if (selectAction === "spotify-this-song") {
 
@@ -54,7 +54,7 @@ var Search = function() {
       });
     };
   
-    this.findActor = function(actor) {
+    this.spotifySong = function(actor) {
       var URL = "http://api.tvmaze.com/search/people?q=" + actor;
   
       // Add code to search the TVMaze API for the given actor
