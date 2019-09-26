@@ -62,7 +62,7 @@ var Search = function() {
       // Append the actor's name, birthday, gender, country, and URL to the `log.txt` file
       // Print this information to the console
       spotify
-  .search({ type: 'track', query: 'All the Small Things' })
+  .search({ type: 'track', query: 'spotify-this-song' })
   .then(function(response) {
     console.log(response);
 
