@@ -54,7 +54,7 @@ var Search = function() {
       });
     };
   
-    this.spotifySong = function(song) {
+    this.spotifySong = function(spotify) {
       //var URL = "http://api.tvmaze.com/search/people?q=" + song;
   
       // Add code to search the TVMaze API for the given actor
