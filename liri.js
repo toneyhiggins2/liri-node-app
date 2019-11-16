@@ -40,22 +40,24 @@ var concert = function(artist){
 
 var spotifyThis = function(song) {
   spotify
-.search({ type: 'track', query: 'spotify-this-song' })
+.search({ type: 'track', query: userSearch })
 .then(function(response) {
-  console.log(response);
+  //console.log(response);
 
-  var jsonData = response.data;
+  var jsonData = response.tracks.items;
+  console.log("Below is the jsonData");
+  console.log(jsonData);
 
       // showData ends up being the string containing the show data we will print to the console
       var songData = [
-        "Artist: " + jsonData.person.name,
-        "Song Name: " + jsonData.person.birthday,
-        "Song URL: " + jsonData.person.gender,
-        "Album: " + jsonData.person.country.name
+        "Artist: " + jsonData.artists,
+        "Song Name: " + jsonData.name,
+        "Song URL: " + jsonData.preview_url,
+        "Album: " + jsonData.album.name
       ].join("\n\n");
 
       // Append showData and the divider to log.txt, print showData to the console
-      fs.appendFile("log.txt", songData + divider, function(err) {
+      fs.appendFile("log.txt", songData, function(err) {
         if (err) throw err;
         console.log(songData);
       });
